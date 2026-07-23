@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-ink text-soft font-sans antialiased;
+}
+
+::selection {
+  @apply bg-accent/40 text-white;
+}
+
+/* Eyebrow label — the mono all-caps tag above each section title */
+.eyebrow {
+  @apply font-mono text-xs uppercase tracking-[0.25em] text-accent;
+}
+
+/* Scroll-reveal: elements start hidden, .revealed animates them in.
+   IntersectionObserver in App.tsx toggles the class. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.revealed {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
