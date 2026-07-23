@@ -7,8 +7,7 @@ export default function Contact() {
     <Section id="contact" eyebrow="05 — Contact" title="Get in touch">
       <div className="reveal rounded-xl border border-edge bg-card p-10 text-center sm:p-14">
         <p className="mx-auto max-w-xl text-lg text-muted">
-          Open to internships, research, and interesting problems in ML, NLP,
-          and quantitative work.
+          Open to AI infrastructure or quantitative development opportunities.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <MagneticButton href={`mailto:${identity.email}`} primary>
