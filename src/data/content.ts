@@ -4,7 +4,7 @@ export const identity = {
   name: "Dhruv Raajeev",
   greeting: "Hello, I'm Dhruv",
   tagline:
-    "Interested in Machine Learning, Natural Language Processing, and Quantitative Development.",
+    "Interested in AI Infrastructure, Algorithmic Modeling, and Distributed Systems.",
   school:
     "Computer Science @ Texas A&M University — expected graduation May 2028.",
   location: "College Station, TX",
