@@ -98,6 +98,16 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "PxPipe — OSS Contributions",
+    window: "July 2026",
+    tags: ["TypeScript", "Cloudflare Workers", "Vitest"],
+    source: "https://github.com/teamchong/pxpipe/pulls?q=author%3Adhruvraajeev",
+    bullets: [
+      "Fixed a Spleen 5x8 glyph collision (K read as H at Hamming distance 1 — the atlas's worst confusable pair) by repainting K with a diagonal-legged bitmap at Hamming ≥6 from every ASCII glyph, scoped to the primary cell so JetBrains-Mono/CJK-fallback atlases and per-glyph token cost were untouched.",
+      "Added a regression test asserting no alphanumeric pair in the atlas sits below Hamming distance 2, closing an item flagged in the project's legibility audit.",
+    ],
+  },
+  {
     name: "Chest X-Ray Pneumonia Localization",
     window: "Dec 2023 – July 2024",
     tags: ["Keras", "ResNet50V2", "InceptionV3", "Google Colab"],

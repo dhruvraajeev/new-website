@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Ferrofluid from "./components/reactbits/Ferrofluid/Ferrofluid";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -57,6 +58,23 @@ export default function App() {
 
   return (
     <>
+      <div className="pointer-events-none fixed inset-0 -z-10">
+        <Ferrofluid
+          className="h-full w-full"
+          colors={["#0284c7", "#6366f1", "#22d3ee"]}
+          speed={0.6}
+          glow={0.9}
+          opacity={0.5}
+        />
+        {/* Fade so the fluid melts into ink and text stays readable */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 90% 80% at 50% 45%, transparent 45%, rgba(9,9,11,0.6) 80%, rgba(9,9,11,0.9) 100%)",
+          }}
+        />
+      </div>
       <Nav />
       <main>
         <Hero />
