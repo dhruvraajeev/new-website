@@ -21,7 +21,7 @@ export default function ProjectCard({ project }: { project: Project }) {
             <h3 className="font-heading text-xl font-semibold">
               {project.name}
               {project.featured && (
-                <span className="ml-3 rounded-full border border-mint/40 px-2.5 py-0.5 align-middle font-mono text-[0.65rem] uppercase tracking-widest text-mint">
+                <span className="ml-3 rounded-full border border-mint/40 px-2.5 py-0.5 align-middle font-mono text-[0.65rem] tracking-widest text-mint">
                   Live
                 </span>
               )}

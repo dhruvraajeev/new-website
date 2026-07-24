@@ -29,7 +29,7 @@ export default function About() {
           className="reveal"
         >
           <div className="rounded-xl bg-card p-7">
-            <p className="font-mono text-xs uppercase tracking-widest text-dim">
+            <p className="font-mono text-xs tracking-widest text-dim">
               Relevant coursework
             </p>
             <ul className="mt-4 flex flex-wrap gap-2">

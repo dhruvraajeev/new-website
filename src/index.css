@@ -8,15 +8,16 @@
 
 body {
   @apply bg-ink text-soft font-sans antialiased;
+  text-transform: lowercase;
 }
 
 ::selection {
   @apply bg-accent/40 text-white;
 }
 
-/* Eyebrow label — the mono all-caps tag above each section title */
+/* Eyebrow label — the mono tag above each section title */
 .eyebrow {
-  @apply font-mono text-xs uppercase tracking-[0.25em] text-accent;
+  @apply font-mono text-xs tracking-[0.25em] text-accent;
 }
 
 /* Scroll-reveal: elements start hidden, .revealed animates them in.
