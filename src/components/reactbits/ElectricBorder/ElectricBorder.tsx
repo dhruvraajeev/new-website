@@ -184,7 +184,8 @@ const ElectricBorder: React.FC<ElectricBorderProps> = ({
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
-      ctx.scale(dpr, dpr);
+      // Reset before scale — resize used to stack ctx.scale(dpr) and drift the path.
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       return { width, height };
     };

@@ -14,7 +14,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         speed={1}
         chaos={0.05}
         borderRadius={12}
-        className="h-full"
+        className="h-full self-stretch"
       >
         <article className="flex h-full flex-col rounded-xl bg-card p-7">
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
