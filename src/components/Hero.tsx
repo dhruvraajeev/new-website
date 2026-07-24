@@ -10,7 +10,7 @@ export default function Hero() {
     >
       <div className="relative mx-auto w-full max-w-site px-6 pt-24">
         <p className="eyebrow mb-6">
-          <AnimatedText text="CS @ Texas A&M · College Station, TX" />
+          <AnimatedText text="cs @ texas a&m · college station, tx" />
         </p>
         <h1 className="max-w-4xl font-heading text-5xl font-bold leading-[1.05] tracking-tight sm:text-7xl">
           <AnimatedText text={identity.greeting} delay={100} />
@@ -24,10 +24,10 @@ export default function Hero() {
 
         <div className="mt-12 flex flex-wrap items-center gap-4">
           <MagneticButton href="#projects" primary>
-            View Work ↓
+            view work ↓
           </MagneticButton>
           <MagneticButton href={identity.resumeHref} download>
-            Download Resume
+            download resume
           </MagneticButton>
           <div className="ml-1 flex items-center gap-5 text-sm text-dim">
             <a
@@ -36,7 +36,7 @@ export default function Hero() {
               rel="noreferrer"
               className="transition-colors hover:text-soft"
             >
-              GitHub
+              github
             </a>
             <a
               href={identity.links.linkedin}
@@ -44,7 +44,7 @@ export default function Hero() {
               rel="noreferrer"
               className="transition-colors hover:text-soft"
             >
-              LinkedIn
+              linkedin
             </a>
           </div>
         </div>

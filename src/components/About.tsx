@@ -4,7 +4,7 @@ import { education } from "../data/content";
 
 export default function About() {
   return (
-    <Section id="about" eyebrow="01 — About" title="Education & focus">
+    <Section id="about" eyebrow="01 — about" title="education & focus">
       <div className="grid items-start gap-6 md:grid-cols-[2fr,3fr]">
         <ElectricBorder
           color="rgba(125, 211, 252, 0.3)"
@@ -30,7 +30,7 @@ export default function About() {
         >
           <div className="rounded-xl bg-card p-7">
             <p className="font-mono text-xs tracking-widest text-dim">
-              Relevant coursework
+              relevant coursework
             </p>
             <ul className="mt-4 flex flex-wrap gap-2">
               {education.coursework.map((c) => (

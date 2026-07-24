@@ -5,7 +5,7 @@ import { identity } from "../data/content";
 
 export default function Contact() {
   return (
-    <Section id="contact" eyebrow="05 — Contact" title="Get in touch">
+    <Section id="contact" eyebrow="05 — contact" title="get in touch">
       <ElectricBorder
         color="rgba(125, 211, 252, 0.3)"
         speed={1}
@@ -15,14 +15,14 @@ export default function Contact() {
       >
         <div className="rounded-xl bg-card p-10 text-center sm:p-14">
           <p className="mx-auto max-w-xl text-lg text-muted">
-            Open to AI infrastructure or quantitative development opportunities.
+            open to ai infrastructure or quantitative development opportunities.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <MagneticButton href={`mailto:${identity.email}`} primary>
               {identity.email}
             </MagneticButton>
             <MagneticButton href={identity.resumeHref} download>
-              Download Resume
+              download resume
             </MagneticButton>
           </div>
           <div className="mt-8 flex items-center justify-center gap-6 text-sm text-dim">
@@ -32,7 +32,7 @@ export default function Contact() {
               rel="noreferrer"
               className="transition-colors hover:text-soft"
             >
-              GitHub
+              github
             </a>
             <a
               href={identity.links.linkedin}
@@ -40,7 +40,7 @@ export default function Contact() {
               rel="noreferrer"
               className="transition-colors hover:text-soft"
             >
-              LinkedIn
+              linkedin
             </a>
           </div>
         </div>

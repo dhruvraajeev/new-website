@@ -38,7 +38,7 @@ export default function Nav() {
             download
             className="rounded-md border border-edge px-3 py-1.5 font-medium text-soft transition-colors hover:border-accent hover:text-white"
           >
-            Resume
+            resume
           </a>
         </div>
         {/* Mobile: just the resume link; sections are one scroll away anyway */}
@@ -47,7 +47,7 @@ export default function Nav() {
           download
           className="rounded-md border border-edge px-3 py-1.5 text-sm font-medium text-soft sm:hidden"
         >
-          Resume
+          resume
         </a>
       </nav>
     </header>

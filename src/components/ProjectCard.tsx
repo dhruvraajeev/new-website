@@ -22,7 +22,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               {project.name}
               {project.featured && (
                 <span className="ml-3 rounded-full border border-mint/40 px-2.5 py-0.5 align-middle font-mono text-[0.65rem] tracking-widest text-mint">
-                  Live
+                  live
                 </span>
               )}
             </h3>
@@ -54,7 +54,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 rel="noreferrer"
                 className="font-medium text-mint transition-colors hover:text-white"
               >
-                Live site ↗
+                live site ↗
               </a>
             )}
             {project.source && (
@@ -64,7 +64,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 rel="noreferrer"
                 className="font-medium text-accent transition-colors hover:text-white"
               >
-                Source ↗
+                source ↗
               </a>
             )}
           </div>
