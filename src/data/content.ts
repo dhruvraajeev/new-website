@@ -90,8 +90,8 @@ export const projects: Project[] = [
     live: "https://brittlepfs.vercel.app",
     source: "https://github.com/dhruvraajeev/brittlePortfolioScore",
     bullets: [
-      "built a live tool that turns any portfolio into a simple 0–100 fragility score from concentration and risk metrics.",
-      "modeled how a shock to one big holding can spill into the rest of the book; covered with tests so the score stays reliable.",
+      "interactive stock portfolio playground - score determined by concentration and risk metrics.",
+      "modeled how a shift to one big holding can spill into the rest of the book; covered with tests for reliable results.",
     ],
   },
   {
@@ -100,18 +100,8 @@ export const projects: Project[] = [
     tags: ["typescript", "cloudflare workers", "vitest"],
     source: "https://github.com/teamchong/pxpipe/pulls?q=author%3Adhruvraajeev",
     bullets: [
-      "fixed a font bug where the letter k looked like h in an open-source image-compression tool.",
-      "added a regression test so similar letter mix-ups don't slip back in.",
-    ],
-  },
-  {
-    name: "chest x-ray pneumonia localization",
-    window: "dec 2023 – july 2024",
-    tags: ["keras", "resnet50v2", "inceptionv3", "google colab"],
-    source: "https://github.com/dhruvraajeev/pneumonia-detection",
-    bullets: [
-      "trained cnn models to find pneumonia in chest x-rays (~97% accuracy on the test set).",
-      "preprocessed ~30k images so the models trained more cleanly across architectures.",
+      "developed glyph fix for a alphanumeric bug in an open-source image-compression tool that cuts fable 5's token cost.",
+      "added regression tests so similar letter mix-ups don't slip back in.",
     ],
   },
   {
@@ -122,6 +112,16 @@ export const projects: Project[] = [
     bullets: [
       "built a desktop app to load, search, and visualize log files with real-time pattern detection.",
       "stored everything in sqlite with sorting, highlighting, and json export.",
+    ],
+  },
+  {
+    name: "chest x-ray pneumonia localization",
+    window: "dec 2023 – july 2024",
+    tags: ["keras", "resnet50v2", "inceptionv3", "google colab"],
+    source: "https://github.com/dhruvraajeev/pneumonia-detection",
+    bullets: [
+      "trained cnn models to find pneumonia in chest x-rays (~97% accuracy on the test set, iou > 0.700).",
+      "preprocessed ~30k images so the models trained more cleanly across architectures.",
     ],
   },
 ];

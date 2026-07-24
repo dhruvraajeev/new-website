@@ -3,7 +3,7 @@ import { projects } from "../data/content";
 
 export default function Projects() {
   return (
-    <Section id="projects" eyebrow="03 — projects" title="selected work">
+    <Section id="projects" eyebrow="03 — projects" title="my work">
       <ol className="relative space-y-10 border-l border-edge pl-8">
         {projects.map((project) => (
           <li key={project.name} className="reveal relative">
