@@ -1,19 +1,19 @@
 import Section from "./Section";
 import MagneticButton from "./reactbits/MagneticButton";
-import BorderGlow from "./reactbits/BorderGlow/BorderGlow";
+import ElectricBorder from "./reactbits/ElectricBorder/ElectricBorder";
 import { identity } from "../data/content";
 
 export default function Contact() {
   return (
     <Section id="contact" eyebrow="05 — Contact" title="Get in touch">
-      <div className="reveal">
-        <BorderGlow
-          borderRadius={12}
-          glowColor="hsl(199, 89%, 48%)"
-          backgroundColor="#18181b"
-          colors={["#0284c7", "#22d3ee", "#38bdf8"]}
-          className="p-10 text-center sm:p-14"
-        >
+      <ElectricBorder
+        color="rgba(125, 211, 252, 0.3)"
+        speed={1}
+        chaos={0.05}
+        borderRadius={12}
+        className="reveal"
+      >
+        <div className="rounded-xl bg-card p-10 text-center sm:p-14">
           <p className="mx-auto max-w-xl text-lg text-muted">
             Open to AI infrastructure or quantitative development opportunities.
           </p>
@@ -43,8 +43,8 @@ export default function Contact() {
               LinkedIn
             </a>
           </div>
-        </BorderGlow>
-      </div>
+        </div>
+      </ElectricBorder>
     </Section>
   );
 }

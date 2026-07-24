@@ -1,20 +1,5 @@
 import React, { useEffect, useRef, useCallback, CSSProperties, ReactNode } from 'react';
-
-function hexToRgba(hex: string, alpha: number = 1): string {
-  if (!hex) return `rgba(0,0,0,${alpha})`;
-  let h = hex.replace('#', '');
-  if (h.length === 3) {
-    h = h
-      .split('')
-      .map(c => c + c)
-      .join('');
-  }
-  const int = parseInt(h.slice(0, 6), 16);
-  const r = (int >> 16) & 255;
-  const g = (int >> 8) & 255;
-  const b = int & 255;
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
+import './ElectricBorder.css';
 
 interface ElectricBorderProps {
   children?: ReactNode;
@@ -305,33 +290,22 @@ const ElectricBorder: React.FC<ElectricBorderProps> = ({
     };
   }, [color, speed, chaos, borderRadius, octavedNoise, getRoundedRectPoint]);
 
+  const vars = {
+    '--electric-border-color': color,
+    borderRadius
+  } as CSSProperties;
+
   return (
-    <div
-      ref={containerRef}
-      className={`relative overflow-visible isolate ${className ?? ''}`}
-      style={{ '--electric-border-color': color, borderRadius, ...style } as CSSProperties}
-    >
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-[2]">
-        <canvas ref={canvasRef} className="block" />
+    <div ref={containerRef} className={`electric-border ${className ?? ''}`} style={{ ...vars, ...style }}>
+      <div className="eb-canvas-container">
+        <canvas ref={canvasRef} className="eb-canvas" />
       </div>
-      <div className="absolute inset-0 rounded-[inherit] pointer-events-none z-0">
-        <div
-          className="absolute inset-0 rounded-[inherit] pointer-events-none"
-          style={{ border: `2px solid ${hexToRgba(color, 0.6)}`, filter: 'blur(1px)' }}
-        />
-        <div
-          className="absolute inset-0 rounded-[inherit] pointer-events-none"
-          style={{ border: `2px solid ${color}`, filter: 'blur(4px)' }}
-        />
-        <div
-          className="absolute inset-0 rounded-[inherit] pointer-events-none -z-[1] scale-110 opacity-30"
-          style={{
-            filter: 'blur(32px)',
-            background: `linear-gradient(-30deg, ${color}, transparent, ${color})`
-          }}
-        />
+      <div className="eb-layers">
+        <div className="eb-glow-1" />
+        <div className="eb-glow-2" />
+        <div className="eb-background-glow" />
       </div>
-      <div className="relative rounded-[inherit] z-[1]">{children}</div>
+      <div className="eb-content">{children}</div>
     </div>
   );
 };
