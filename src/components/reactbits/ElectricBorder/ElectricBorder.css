@@ -1,6 +1,12 @@
 .electric-border {
   --electric-light-color: oklch(from var(--electric-border-color) l c h);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* Hug content height in grids — default stretch made the canvas taller
+     than the card background (empty glow below the filled panel). */
+  align-self: start;
   border-radius: inherit;
   overflow: visible;
   isolation: isolate;
@@ -21,6 +27,10 @@
 
 .eb-content {
   position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
   border-radius: inherit;
   z-index: 1;
 }

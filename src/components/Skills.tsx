@@ -5,7 +5,7 @@ import { skills } from "../data/content";
 export default function Skills() {
   return (
     <Section id="skills" eyebrow="04 — Skills" title="What I work with">
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid items-start gap-6 md:grid-cols-2">
         {Object.entries(skills).map(([group, items]) => (
           <ElectricBorder
             key={group}

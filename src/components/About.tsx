@@ -5,7 +5,7 @@ import { education } from "../data/content";
 export default function About() {
   return (
     <Section id="about" eyebrow="01 — About" title="Education & focus">
-      <div className="grid gap-6 md:grid-cols-[2fr,3fr]">
+      <div className="grid items-start gap-6 md:grid-cols-[2fr,3fr]">
         <ElectricBorder
           color="rgba(125, 211, 252, 0.3)"
           speed={1}
