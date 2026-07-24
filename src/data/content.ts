@@ -103,8 +103,8 @@ export const projects: Project[] = [
     tags: ["TypeScript", "Cloudflare Workers", "Vitest"],
     source: "https://github.com/teamchong/pxpipe/pulls?q=author%3Adhruvraajeev",
     bullets: [
-      "Fixed a Spleen 5x8 glyph collision (K read as H at Hamming distance 1 — the atlas's worst confusable pair) by repainting K with a diagonal-legged bitmap at Hamming ≥6 from every ASCII glyph, scoped to the primary cell so JetBrains-Mono/CJK-fallback atlases and per-glyph token cost were untouched; added a regression test asserting no alphanumeric pair sits below Hamming 2.",
-      "Built an opt-in adaptive chars-per-token estimator for the image/text profitability gate: a 6-bucket least-squares fit over existing bucket_chars/baseline_tokens/image_pixels telemetry solves a per-bucket marginal token rate, replacing hand-tuned CPT constants that over-priced text on dense content (~1.5 actual vs. 2.0–4.0 baked-in); fails closed on <20 samples, <8 bucket appearances, out-of-band rates, or ill-conditioned fits, recovering source CPTs within 5% under noise.",
+      "Fixed a Spleen 5x8 glyph collision (K read as H at Hamming distance 1 — the atlas's worst confusable pair) by repainting K with a diagonal-legged bitmap at Hamming ≥6 from every ASCII glyph, scoped to the primary cell so JetBrains-Mono/CJK-fallback atlases and per-glyph token cost were untouched.",
+      "Added a regression test asserting no alphanumeric pair in the atlas sits below Hamming distance 2, closing an item flagged in the project's legibility audit.",
     ],
   },
   {
