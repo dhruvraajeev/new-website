@@ -1,23 +1,11 @@
-import { Suspense } from "react";
 import AnimatedText from "./reactbits/AnimatedText";
 import MagneticButton from "./reactbits/MagneticButton";
-import Lanyard from "./reactbits/Lanyard/Lanyard";
 import { identity } from "../data/content";
 
 export default function Hero() {
   return (
-    <section id="top" className="relative flex min-h-[92vh] items-center overflow-visible">
-      {/* Full-height right pane = room to swing L/R/down without canvas clipping.
-          Not fixed — scrolls away with the hero. */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-[min(48vw,30rem)] md:block">
-        <div className="pointer-events-auto h-full w-full">
-          <Suspense fallback={null}>
-            <Lanyard />
-          </Suspense>
-        </div>
-      </div>
-
-      <div className="relative z-0 mx-auto w-full max-w-site px-6 pt-24">
+    <section id="top" className="relative flex min-h-[92vh] items-center">
+      <div className="relative mx-auto w-full max-w-site px-6 pt-24">
         <p className="eyebrow mb-6">
           <AnimatedText text="cs @ texas a&m · college station, tx" />
         </p>
