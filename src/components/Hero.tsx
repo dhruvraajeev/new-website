@@ -8,29 +8,6 @@ export default function Hero() {
       id="top"
       className="relative flex min-h-[92vh] items-center overflow-hidden"
     >
-      {/* Background: soft radial glow + faint grid, llmquant-style spacious dark */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 45% at 50% 20%, rgba(2,132,199,0.14), transparent 70%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.35]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(39,39,42,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(39,39,42,0.5) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-          maskImage:
-            "radial-gradient(ellipse 70% 60% at 50% 35%, black 30%, transparent 75%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 70% 60% at 50% 35%, black 30%, transparent 75%)",
-        }}
-      />
-
       <div className="relative mx-auto w-full max-w-site px-6 pt-24">
         <p className="eyebrow mb-6">
           <AnimatedText text="CS @ Texas A&M · College Station, TX" />
