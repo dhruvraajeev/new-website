@@ -54,15 +54,15 @@ interface LanyardProps {
 }
 
 export default function Lanyard({
-  position = [0, 0, 26],
+  position = [0, 0, 32],
   gravity = [0, -40, 0],
-  fov = 18,
+  fov = 22,
   transparent = true,
   frontImage = null,
   backImage = null,
   imageFit = 'cover',
   lanyardImage = null,
-  lanyardWidth = 1.15
+  lanyardWidth = 0.9
 }: LanyardProps) {
   const [isMobile, setIsMobile] = useState<boolean>(() => typeof window !== 'undefined' && window.innerWidth < 768);
 
@@ -73,11 +73,12 @@ export default function Lanyard({
   }, []);
 
   return (
-    <div className="relative z-0 w-full h-full flex justify-center items-center transform scale-100 origin-center">
+    <div className="relative z-0 h-full w-full origin-center scale-100 transform">
       <Canvas
         camera={{ position, fov }}
         dpr={[1, isMobile ? 1.5 : 2]}
         gl={{ alpha: transparent }}
+        style={{ width: '100%', height: '100%' }}
         onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
       >
         <ambientLight intensity={Math.PI} />
@@ -244,7 +245,7 @@ function Band({
   useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1]);
   useSphericalJoint(j3, card, [
     [0, 0, 0],
-    [0, 1.45, 0]
+    [0, 1.2, 0]
   ]);
 
   useEffect(() => {
@@ -290,27 +291,29 @@ function Band({
 
   return (
     <>
-      <group position={[0, 4, 0]}>
+      {/* Shifted left so the hang sits in the middle of the right-pane canvas,
+          with margin on left/right/bottom for swing instead of clipping. */}
+      <group position={[-1.2, 5.2, 0]}>
         <RigidBody ref={fixed} {...segmentProps} type="fixed" />
-        <RigidBody position={[0.5, 0, 0]} ref={j1} {...segmentProps} type="dynamic">
+        <RigidBody position={[0.35, 0, 0]} ref={j1} {...segmentProps} type="dynamic">
           <BallCollider args={[0.1]} />
         </RigidBody>
-        <RigidBody position={[1, 0, 0]} ref={j2} {...segmentProps} type="dynamic">
+        <RigidBody position={[0.7, 0, 0]} ref={j2} {...segmentProps} type="dynamic">
           <BallCollider args={[0.1]} />
         </RigidBody>
-        <RigidBody position={[1.5, 0, 0]} ref={j3} {...segmentProps} type="dynamic">
+        <RigidBody position={[1.05, 0, 0]} ref={j3} {...segmentProps} type="dynamic">
           <BallCollider args={[0.1]} />
         </RigidBody>
         <RigidBody
-          position={[2, 0, 0]}
+          position={[1.4, 0, 0]}
           ref={card}
           {...segmentProps}
           type={dragged ? 'kinematicPosition' : 'dynamic'}
         >
-          <CuboidCollider args={[0.9, 1.25, 0.01]} />
+          <CuboidCollider args={[0.65, 0.9, 0.01]} />
           <group
-            scale={2.7}
-            position={[0, -1.35, -0.05]}
+            scale={1.85}
+            position={[0, -1.05, -0.05]}
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
             onPointerUp={(e: ThreeEvent<PointerEvent>) => {

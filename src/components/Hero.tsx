@@ -6,11 +6,11 @@ import { identity } from "../data/content";
 
 export default function Hero() {
   return (
-    <section id="top" className="relative flex min-h-[92vh] items-center">
-      {/* Lives in normal page flow (not fixed) — scrolls away with the hero.
-          Wide box + overflow visible so the swinging card isn't clipped. */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 mx-auto hidden h-[36rem] max-w-site px-6 md:block">
-        <div className="pointer-events-auto absolute -right-2 top-0 h-full w-80 overflow-visible lg:right-4 lg:w-96">
+    <section id="top" className="relative flex min-h-[92vh] items-center overflow-visible">
+      {/* Full-height right pane = room to swing L/R/down without canvas clipping.
+          Not fixed — scrolls away with the hero. */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-[min(48vw,30rem)] md:block">
+        <div className="pointer-events-auto h-full w-full">
           <Suspense fallback={null}>
             <Lanyard />
           </Suspense>
