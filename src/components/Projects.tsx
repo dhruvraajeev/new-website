@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import Section from "./Section";
 import CircularGallery from "./reactbits/CircularGallery/CircularGallery";
 import { projects, type Project } from "../data/content";
@@ -125,22 +126,33 @@ export default function Projects() {
         ))}
       </ul>
 
-      {preview !== null && items[preview] && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-ink/80 p-6 backdrop-blur-sm"
-          onClick={() => setPreview(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-label={projects[preview]?.name ?? "Project preview"}
-        >
-          <img
-            src={items[preview].image}
-            alt={projects[preview]?.name ?? "Project"}
-            className="max-h-[85vh] w-auto max-w-[min(420px,92vw)] rounded-lg shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+      <AnimatePresence>
+        {preview !== null && items[preview] && (
+          <motion.div
+            key="preview"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-ink/80 p-6 backdrop-blur-sm"
+            onClick={() => setPreview(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={projects[preview]?.name ?? "Project preview"}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <motion.img
+              src={items[preview].image}
+              alt={projects[preview]?.name ?? "Project"}
+              className="max-h-[85vh] w-auto max-w-[min(420px,92vw)] rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.82, y: 28 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.88, y: 16 }}
+              transition={{ type: "spring", stiffness: 320, damping: 26, mass: 0.85 }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Section>
   );
 }
