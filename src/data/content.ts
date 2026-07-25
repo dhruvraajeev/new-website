@@ -115,6 +115,16 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "message board — solidity contract",
+    window: "jul 2024 – oct 2024",
+    tags: ["solidity", "ethereum", "remix ide"],
+    source: "https://github.com/dhruvraajeev/message-board-contract",
+    bullets: [
+      "deployed a decentralized message board in remix with on-chain storage and retrieval in solidity.",
+      "post, fetch, and moderate messages with owner controls, events, and per-sender lookups.",
+    ],
+  },
+  {
     name: "chest x-ray pneumonia localization",
     window: "dec 2023 – july 2024",
     tags: ["keras", "resnet50v2", "inceptionv3", "google colab"],
