@@ -78,11 +78,11 @@ export default function Projects() {
       >
         <CircularGallery
           items={items}
-          bend={3}
+          bend={1}
           borderRadius={0.05}
           textColor="#f4f4f5"
           font='bold 30px "DM Sans"'
-          scrollEase={0.02}
+          scrollEase={0.1}
         />
       </div>
       <ul className="reveal mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm">
