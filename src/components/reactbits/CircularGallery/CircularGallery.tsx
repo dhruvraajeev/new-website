@@ -5,14 +5,6 @@ import './CircularGallery.css';
 
 type GL = Renderer['gl'];
 
-function debounce<T extends (...args: any[]) => void>(func: T, wait: number) {
-  let timeout: number;
-  return function (this: any, ...args: Parameters<T>) {
-    window.clearTimeout(timeout);
-    timeout = window.setTimeout(() => func.apply(this, args), wait);
-  };
-}
-
 function lerp(p1: number, p2: number, t: number): number {
   return p1 + (p2 - p1) * t;
 }
@@ -489,7 +481,6 @@ class App {
     last: number;
     position?: number;
   };
-  onCheckDebounce: (...args: any[]) => void;
   renderer!: Renderer;
   gl!: GL;
   camera!: Camera;
@@ -527,7 +518,6 @@ class App {
     this.container = container;
     this.scrollSpeed = scrollSpeed;
     this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
-    this.onCheckDebounce = debounce(this.onCheck.bind(this), 200);
     this.createRenderer();
     this.createCamera();
     this.createScene();
@@ -660,7 +650,6 @@ class App {
 
   onTouchUp() {
     this.isDown = false;
-    this.onCheck();
   }
 
   onWheel(e: Event) {
@@ -668,7 +657,6 @@ class App {
     // Only horizontal scroll moves the gallery; vertical page scroll is ignored.
     if (Math.abs(wheelEvent.deltaX) <= Math.abs(wheelEvent.deltaY)) return;
     this.scroll.target += (wheelEvent.deltaX > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2;
-    this.onCheckDebounce();
   }
 
   onKeyDown(e: KeyboardEvent) {
@@ -676,26 +664,16 @@ class App {
       case 'ArrowRight':
         e.preventDefault();
         this.scroll.target += this.scrollSpeed * 5;
-        this.onCheckDebounce();
         break;
 
       case 'ArrowLeft':
         e.preventDefault();
         this.scroll.target -= this.scrollSpeed * 5;
-        this.onCheckDebounce();
         break;
 
       default:
         break;
     }
-  }
-
-  onCheck() {
-    if (!this.medias || !this.medias[0]) return;
-    const width = this.medias[0].width;
-    const itemIndex = Math.round(Math.abs(this.scroll.target) / width);
-    const item = width * itemIndex;
-    this.scroll.target = this.scroll.target < 0 ? -item : item;
   }
 
   onResize() {
