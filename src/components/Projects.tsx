@@ -6,10 +6,6 @@ import { projects, type Project } from "../data/content";
 const EDGE_FADE =
   "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)";
 
-/** Short caption for the gallery — long names overlap their neighbours. */
-const shortName = (p: Project) =>
-  p.name.split(" — ")[0].split(" ").slice(0, 3).join(" ");
-
 /** Renders a project as a dark card image so the gallery has something to show. */
 function cardImage(project: Project): string {
   // 700x900 matches the gallery plane's aspect, so nothing gets cropped.
@@ -65,7 +61,7 @@ export default function Projects() {
     () =>
       projects.map((project) => ({
         image: cardImage(project),
-        text: shortName(project),
+        text: "",
       })),
     [],
   );
@@ -92,7 +88,7 @@ export default function Projects() {
       <ul className="reveal mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm">
         {projects.map((project) => (
           <li key={project.name} className="flex items-baseline gap-3">
-            <span className="text-muted">{shortName(project)}</span>
+            <span className="text-muted">{project.name}</span>
             {project.live && (
               <a
                 href={project.live}

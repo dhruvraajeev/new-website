@@ -665,8 +665,9 @@ class App {
 
   onWheel(e: Event) {
     const wheelEvent = e as WheelEvent;
-    const delta = wheelEvent.deltaY || (wheelEvent as any).wheelDelta || (wheelEvent as any).detail;
-    this.scroll.target += (delta > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2;
+    // Only horizontal scroll moves the gallery; vertical page scroll is ignored.
+    if (Math.abs(wheelEvent.deltaX) <= Math.abs(wheelEvent.deltaY)) return;
+    this.scroll.target += (wheelEvent.deltaX > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2;
     this.onCheckDebounce();
   }
 
