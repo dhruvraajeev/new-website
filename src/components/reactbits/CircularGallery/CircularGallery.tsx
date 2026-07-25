@@ -469,6 +469,7 @@ interface AppConfig {
   font?: string;
   scrollSpeed?: number;
   scrollEase?: number;
+  onItemClick?: (index: number) => void;
 }
 
 class App {
@@ -481,6 +482,8 @@ class App {
     last: number;
     position?: number;
   };
+  onItemClick?: (index: number) => void;
+  itemCount: number = 0;
   renderer!: Renderer;
   gl!: GL;
   camera!: Camera;
@@ -496,11 +499,13 @@ class App {
   boundOnWheel!: (e: Event) => void;
   boundOnTouchDown!: (e: MouseEvent | TouchEvent) => void;
   boundOnTouchMove!: (e: MouseEvent | TouchEvent) => void;
-  boundOnTouchUp!: () => void;
+  boundOnTouchUp!: (e: MouseEvent | TouchEvent) => void;
   boundOnKeyDown!: (e: KeyboardEvent) => void;
 
   isDown: boolean = false;
   start: number = 0;
+  startY: number = 0;
+  dragMoved: boolean = false;
 
   constructor(
     container: HTMLElement,
@@ -511,13 +516,15 @@ class App {
       borderRadius = 0,
       font = 'bold 30px Figtree',
       scrollSpeed = 2,
-      scrollEase = 0.05
+      scrollEase = 0.05,
+      onItemClick
     }: AppConfig
   ) {
     document.documentElement.classList.remove('no-js');
     this.container = container;
     this.scrollSpeed = scrollSpeed;
     this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
+    this.onItemClick = onItemClick;
     this.createRenderer();
     this.createCamera();
     this.createScene();
@@ -614,6 +621,7 @@ class App {
       }
     ];
     const galleryItems = items && items.length ? items : defaultItems;
+    this.itemCount = galleryItems.length;
     this.mediasImages = galleryItems.concat(galleryItems);
     this.medias = this.mediasImages.map((data, index) => {
       return new Media({
@@ -636,20 +644,71 @@ class App {
   }
 
   onTouchDown(e: MouseEvent | TouchEvent) {
+    if (!this.container.contains(e.target as Node)) return;
     this.isDown = true;
+    this.dragMoved = false;
     this.scroll.position = this.scroll.current;
-    this.start = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const point = 'touches' in e ? e.touches[0] : e;
+    this.start = point.clientX;
+    this.startY = point.clientY;
   }
 
   onTouchMove(e: MouseEvent | TouchEvent) {
     if (!this.isDown) return;
-    const x = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    const distance = (this.start - x) * (this.scrollSpeed * 0.025);
+    const point = 'touches' in e ? e.touches[0] : e;
+    if (
+      Math.abs(point.clientX - this.start) > 8 ||
+      Math.abs(point.clientY - this.startY) > 8
+    ) {
+      this.dragMoved = true;
+    }
+    // Don't scroll until past the click threshold — otherwise jitter blocks enlarge.
+    if (!this.dragMoved) return;
+    const distance = (this.start - point.clientX) * (this.scrollSpeed * 0.025);
     this.scroll.target = (this.scroll.position ?? 0) + distance;
   }
 
-  onTouchUp() {
+  onTouchUp(e: MouseEvent | TouchEvent) {
+    if (!this.isDown) return;
     this.isDown = false;
+
+    const still =
+      Math.abs(this.scroll.current - this.scroll.target) < 0.5 &&
+      Math.abs(this.scroll.current - this.scroll.last) < 0.05;
+    if (this.dragMoved || !still || !this.onItemClick) return;
+
+    const point = 'changedTouches' in e ? e.changedTouches[0] : e;
+    const index = this.hitTest(point.clientX, point.clientY);
+    if (index !== null) this.onItemClick(index);
+  }
+
+  /** Map a screen click to a gallery item index, or null if nothing was hit. */
+  hitTest(clientX: number, clientY: number): number | null {
+    const canvas = this.renderer.gl.canvas as HTMLCanvasElement;
+    const rect = canvas.getBoundingClientRect();
+    if (
+      clientX < rect.left ||
+      clientX > rect.right ||
+      clientY < rect.top ||
+      clientY > rect.bottom
+    ) {
+      return null;
+    }
+
+    const worldX = ((((clientX - rect.left) / rect.width) * 2 - 1) * this.viewport.width) / 2;
+    const worldY = (-(((clientY - rect.top) / rect.height) * 2 - 1) * this.viewport.height) / 2;
+
+    let best: Media | null = null;
+    let bestDist = Infinity;
+    for (const media of this.medias) {
+      const dx = Math.abs(media.plane.position.x - worldX);
+      const dy = Math.abs(media.plane.position.y - worldY);
+      if (dx <= media.plane.scale.x / 2 && dy <= media.plane.scale.y / 2 && dx < bestDist) {
+        bestDist = dx;
+        best = media;
+      }
+    }
+    return best && this.itemCount ? best.index % this.itemCount : null;
   }
 
   onWheel(e: Event) {
@@ -755,6 +814,7 @@ interface CircularGalleryProps {
   fontUrl?: string;
   scrollSpeed?: number;
   scrollEase?: number;
+  onItemClick?: (index: number) => void;
 }
 
 export default function CircularGallery({
@@ -765,9 +825,13 @@ export default function CircularGallery({
   font = 'bold 30px Figtree',
   fontUrl,
   scrollSpeed = 2,
-  scrollEase = 0.05
+  scrollEase = 0.05,
+  onItemClick
 }: CircularGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const onItemClickRef = useRef(onItemClick);
+  onItemClickRef.current = onItemClick;
+
   useEffect(() => {
     if (!containerRef.current) return;
     let app: App | undefined;
@@ -781,7 +845,8 @@ export default function CircularGallery({
         borderRadius,
         font: resolvedFont,
         scrollSpeed,
-        scrollEase
+        scrollEase,
+        onItemClick: (index) => onItemClickRef.current?.(index)
       });
     });
     return () => {
@@ -795,7 +860,7 @@ export default function CircularGallery({
       ref={containerRef}
       tabIndex={0}
       role="region"
-      aria-label="Circular image gallery. Use Left and Right Arrow keys to navigate."
+      aria-label="Circular image gallery. Use Left and Right Arrow keys to navigate. Click a card to enlarge."
     />
   );
 }

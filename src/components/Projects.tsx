@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Section from "./Section";
 import CircularGallery from "./reactbits/CircularGallery/CircularGallery";
 import { projects, type Project } from "../data/content";
@@ -57,6 +57,8 @@ function cardImage(project: Project): string {
 }
 
 export default function Projects() {
+  const [preview, setPreview] = useState<number | null>(null);
+
   const items = useMemo(
     () =>
       projects.map((project) => ({
@@ -65,6 +67,15 @@ export default function Projects() {
       })),
     [],
   );
+
+  useEffect(() => {
+    if (preview === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setPreview(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [preview]);
 
   return (
     <Section id="projects" eyebrow="03 — projects" title="my work">
@@ -83,6 +94,7 @@ export default function Projects() {
           textColor="#f4f4f5"
           font='bold 30px "DM Sans"'
           scrollEase={0.1}
+          onItemClick={setPreview}
         />
       </div>
       <ul className="reveal mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm">
@@ -112,6 +124,23 @@ export default function Projects() {
           </li>
         ))}
       </ul>
+
+      {preview !== null && items[preview] && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-ink/80 p-6 backdrop-blur-sm"
+          onClick={() => setPreview(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={projects[preview]?.name ?? "Project preview"}
+        >
+          <img
+            src={items[preview].image}
+            alt={projects[preview]?.name ?? "Project"}
+            className="max-h-[85vh] w-auto max-w-[min(420px,92vw)] rounded-lg shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </Section>
   );
 }
