@@ -105,17 +105,9 @@ function MobileProjectCards() {
             <h3 className="mt-2 font-heading text-lg font-semibold">
               {project.name}
             </h3>
-            <ul className="mt-4 space-y-2">
-              {project.bullets.map((b, i) => (
-                <li
-                  key={i}
-                  className="text-sm leading-relaxed text-muted"
-                >
-                  <span className="mr-2 text-dim">—</span>
-                  {b}
-                </li>
-              ))}
-            </ul>
+            <p className="mt-4 text-sm leading-relaxed text-muted">
+              {project.bullets[0]}
+            </p>
             <ul className="mt-4 flex flex-wrap gap-2">
               {project.tags.map((tag) => (
                 <li
