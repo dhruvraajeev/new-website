@@ -15,7 +15,6 @@ export default function App() {
   // scroll listener catches jump-scrolls (anchor links, fast wheels) where an
   // element can cross the whole viewport in one frame and IO never fires.
   useEffect(() => {
-    const els = Array.from(document.querySelectorAll(".reveal"));
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
@@ -27,13 +26,23 @@ export default function App() {
       },
       { threshold: 0.15 },
     );
-    els.forEach((el) => io.observe(el));
+    const observed = new WeakSet<Element>();
+
+    const watch = (el: Element) => {
+      if (observed.has(el) || el.classList.contains("revealed")) return;
+      observed.add(el);
+      io.observe(el);
+    };
+
+    const scan = () => {
+      document.querySelectorAll(".reveal").forEach(watch);
+    };
 
     let ticking = false;
     const catchUp = () => {
       ticking = false;
-      for (const el of els) {
-        if (el.classList.contains("revealed")) continue;
+      scan();
+      for (const el of document.querySelectorAll(".reveal:not(.revealed)")) {
         // Anything whose top is already above ~90% of the viewport height
         // has been reached (or passed) — reveal it.
         if (el.getBoundingClientRect().top < window.innerHeight * 0.9) {
@@ -48,9 +57,15 @@ export default function App() {
         requestAnimationFrame(catchUp);
       }
     };
+
+    scan();
+    // Pick up .reveal nodes that mount later (e.g. mobile/desktop Projects swap).
+    const mo = new MutationObserver(scan);
+    mo.observe(document.body, { childList: true, subtree: true });
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
+      mo.disconnect();
       io.disconnect();
       window.removeEventListener("scroll", onScroll);
     };

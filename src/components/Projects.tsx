@@ -2,10 +2,14 @@ import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import Section from "./Section";
 import CircularGallery from "./reactbits/CircularGallery/CircularGallery";
+import ElectricBorder from "./reactbits/ElectricBorder/ElectricBorder";
 import { projects, type Project } from "../data/content";
 
 const EDGE_FADE =
   "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)";
+
+/** Phones only — iPad portrait (768px) and up keep the circular gallery. */
+const GALLERY_MQ = "(min-width: 768px)";
 
 /** Renders a project as a dark card image so the gallery has something to show. */
 function cardImage(project: Project): string {
@@ -57,16 +61,108 @@ function cardImage(project: Project): string {
   return canvas.toDataURL();
 }
 
+function ProjectLinks({ project }: { project: Project }) {
+  return (
+    <>
+      {project.live && (
+        <a
+          href={project.live}
+          target="_blank"
+          rel="noreferrer"
+          className="font-medium text-mint transition-colors hover:text-white"
+        >
+          live ↗
+        </a>
+      )}
+      {project.source && (
+        <a
+          href={project.source}
+          target="_blank"
+          rel="noreferrer"
+          className="font-medium text-accent transition-colors hover:text-white"
+        >
+          source ↗
+        </a>
+      )}
+    </>
+  );
+}
+
+function MobileProjectCards() {
+  return (
+    <div className="grid gap-6">
+      {projects.map((project) => (
+        <ElectricBorder
+          key={project.name}
+          color="rgba(125, 211, 252, 0.3)"
+          speed={1}
+          chaos={0.05}
+          borderRadius={12}
+          className="reveal"
+        >
+          <div className="rounded-xl bg-card p-6">
+            <p className="font-mono text-xs text-dim">{project.window}</p>
+            <h3 className="mt-2 font-heading text-lg font-semibold">
+              {project.name}
+            </h3>
+            <ul className="mt-4 space-y-2">
+              {project.bullets.map((b, i) => (
+                <li
+                  key={i}
+                  className="text-sm leading-relaxed text-muted"
+                >
+                  <span className="mr-2 text-dim">—</span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <li
+                  key={tag}
+                  className="rounded-full border border-edge px-3 py-1 font-mono text-xs text-dim"
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
+            {(project.live || project.source) && (
+              <div className="mt-5 flex flex-wrap gap-4 text-sm">
+                <ProjectLinks project={project} />
+              </div>
+            )}
+          </div>
+        </ElectricBorder>
+      ))}
+    </div>
+  );
+}
+
 export default function Projects() {
   const [preview, setPreview] = useState<number | null>(null);
+  // Sync on first paint so desktop mounts the gallery before App's scroll-reveal
+  // observer runs — starting at false left .reveal nodes invisible forever.
+  const [showGallery, setShowGallery] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(GALLERY_MQ).matches,
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia(GALLERY_MQ);
+    const sync = () => setShowGallery(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   const items = useMemo(
     () =>
-      projects.map((project) => ({
-        image: cardImage(project),
-        text: "",
-      })),
-    [],
+      showGallery
+        ? projects.map((project) => ({
+            image: cardImage(project),
+            text: "",
+          }))
+        : [],
+    [showGallery],
   );
 
   useEffect(() => {
@@ -80,79 +176,71 @@ export default function Projects() {
 
   return (
     <Section id="projects" eyebrow="03 — projects" title="my work">
-      {/* Mask fades cards out at the left/right edges instead of clipping them. */}
-      <div
-        className="reveal h-[600px]"
-        style={{
-          maskImage: EDGE_FADE,
-          WebkitMaskImage: EDGE_FADE,
-        }}
-      >
-        <CircularGallery
-          items={items}
-          bend={1}
-          borderRadius={0.05}
-          textColor="#f4f4f5"
-          font='bold 30px "DM Sans"'
-          scrollEase={0.1}
-          onItemClick={setPreview}
-        />
-      </div>
-      <ul className="reveal mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm">
-        {projects.map((project) => (
-          <li key={project.name} className="flex items-baseline gap-3">
-            <span className="text-muted">{project.name}</span>
-            {project.live && (
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noreferrer"
-                className="font-medium text-mint transition-colors hover:text-white"
-              >
-                live ↗
-              </a>
-            )}
-            {project.source && (
-              <a
-                href={project.source}
-                target="_blank"
-                rel="noreferrer"
-                className="font-medium text-accent transition-colors hover:text-white"
-              >
-                source ↗
-              </a>
-            )}
-          </li>
-        ))}
-      </ul>
-
-      <AnimatePresence>
-        {preview !== null && items[preview] && (
-          <motion.div
-            key="preview"
-            className="fixed inset-0 z-50 flex items-center justify-center bg-ink/80 p-6 backdrop-blur-sm"
-            onClick={() => setPreview(null)}
-            role="dialog"
-            aria-modal="true"
-            aria-label={projects[preview]?.name ?? "Project preview"}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+      {showGallery ? (
+        <>
+          {/* Mask fades cards out at the left/right edges instead of clipping them. */}
+          <div
+            className="reveal h-[600px]"
+            style={{
+              maskImage: EDGE_FADE,
+              WebkitMaskImage: EDGE_FADE,
+            }}
           >
-            <motion.img
-              src={items[preview].image}
-              alt={projects[preview]?.name ?? "Project"}
-              className="max-h-[85vh] w-auto max-w-[min(420px,92vw)] rounded-lg shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-              initial={{ scale: 0.82, y: 28 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.88, y: 16 }}
-              transition={{ type: "spring", stiffness: 320, damping: 26, mass: 0.85 }}
+            <CircularGallery
+              items={items}
+              bend={1}
+              borderRadius={0.05}
+              textColor="#f4f4f5"
+              font='bold 30px "DM Sans"'
+              scrollEase={0.1}
+              onItemClick={setPreview}
             />
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+          <ul className="reveal mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm">
+            {projects.map((project) => (
+              <li key={project.name} className="flex items-baseline gap-3">
+                <span className="text-muted">{project.name}</span>
+                <ProjectLinks project={project} />
+              </li>
+            ))}
+          </ul>
+
+          <AnimatePresence>
+            {preview !== null && items[preview] && (
+              <motion.div
+                key="preview"
+                className="fixed inset-0 z-50 flex items-center justify-center bg-ink/80 p-6 backdrop-blur-sm"
+                onClick={() => setPreview(null)}
+                role="dialog"
+                aria-modal="true"
+                aria-label={projects[preview]?.name ?? "Project preview"}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <motion.img
+                  src={items[preview].image}
+                  alt={projects[preview]?.name ?? "Project"}
+                  className="max-h-[85vh] w-auto max-w-[min(420px,92vw)] rounded-lg shadow-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                  initial={{ scale: 0.82, y: 28 }}
+                  animate={{ scale: 1, y: 0 }}
+                  exit={{ scale: 0.88, y: 16 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 320,
+                    damping: 26,
+                    mass: 0.85,
+                  }}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </>
+      ) : (
+        <MobileProjectCards />
+      )}
     </Section>
   );
 }
