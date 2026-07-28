@@ -105,7 +105,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    name: "chaosblade — oss contribution",
+    name: "chaosblade — oss contributions",
     window: "july 2026",
     tags: ["python", "typer", "chaos engineering"],
     source: "https://github.com/chaosblade-io/chaosblade/pull/1326",
