@@ -100,7 +100,7 @@ export const projects: Project[] = [
     tags: ["typescript", "cloudflare workers", "vitest"],
     source: "https://github.com/teamchong/pxpipe/pulls?q=author%3Adhruvraajeev",
     bullets: [
-      "developed glyph fix for a alphanumeric bug in an open-source image-compression tool that cuts fable 5's token cost.",
+      "glyph fix for an alphanumeric bug in an oss image-compression tool that cuts fable 5's token cost.",
       "added regression tests so similar letter mix-ups don't slip back in.",
     ],
   },
@@ -110,7 +110,7 @@ export const projects: Project[] = [
     tags: ["python", "typer", "chaos engineering"],
     source: "https://github.com/chaosblade-io/chaosblade/pull/1326",
     bullets: [
-      "capped an unbounded file-read tool in chaosblade's LLM agent to stop large files from overflowing context and inflating token cost.",
+      "capped an unbounded file-read in chaosblade's LLM agent so large files don't overflow context or token cost.",
       "added truncation tests covering the byte cap and multibyte boundary edge cases; merged upstream.",
     ],
   },

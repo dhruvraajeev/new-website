@@ -105,7 +105,7 @@ function MobileProjectCards() {
             <h3 className="mt-2 font-heading text-lg font-semibold">
               {project.name}
             </h3>
-            <p className="mt-4 text-sm leading-relaxed text-muted">
+            <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-muted">
               {project.bullets[0]}
             </p>
             <ul className="mt-4 flex flex-wrap gap-2">
