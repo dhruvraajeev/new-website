@@ -105,6 +105,16 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "chaosblade — oss contribution",
+    window: "july 2026",
+    tags: ["python", "typer", "chaos engineering"],
+    source: "https://github.com/chaosblade-io/chaosblade/pull/1326",
+    bullets: [
+      "capped an unbounded file-read tool in chaosblade's LLM agent to stop large files from overflowing context and inflating token cost.",
+      "added truncation tests covering the byte cap and multibyte boundary edge cases; merged upstream.",
+    ],
+  },
+  {
     name: "advanced log analysis + sqlite",
     window: "march 2025 – june 2025",
     tags: ["python", "tkinter", "sqlite", "regex"],
