@@ -3,11 +3,15 @@
 export const identity = {
   name: "dhruv raajeev",
   greeting: "dhruv raajeev",
+  // Serif headline, one line per array entry.
+  headline: ["ai infrastructure &", "algorithmic modeling."],
   tagline:
     "interested in ai infrastructure, algorithmic modeling, and distributed systems.",
   school:
     "computer science @ texas a&m university — expected graduation may 2028.",
   location: "college station, tx",
+  availability:
+    "open to ai infrastructure or quantitative development opportunities.",
   email: "dhruv.raajeev@outlook.com",
   resumeHref: "/resume.pdf",
   links: {
@@ -76,7 +80,6 @@ export interface Project {
   window: string;
   tags: string[];
   bullets: string[];
-  featured?: boolean;
   live?: string;
   source?: string;
 }
@@ -86,7 +89,6 @@ export const projects: Project[] = [
     name: "brittle — portfolio fragility score",
     window: "may 2026 – july 2026",
     tags: ["react", "typescript", "fastapi", "numpy", "vercel"],
-    featured: true,
     live: "https://brittlepfs.vercel.app",
     source: "https://github.com/dhruvraajeev/brittlePortfolioScore",
     bullets: [
@@ -174,9 +176,7 @@ export const skills = {
 };
 
 export const nav = [
-  { label: "about", href: "#about" },
   { label: "experience", href: "#experience" },
   { label: "projects", href: "#projects" },
-  { label: "skills", href: "#skills" },
   { label: "contact", href: "#contact" },
 ];

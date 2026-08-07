@@ -4,22 +4,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: "#09090b",
-        card: "#18181b",
-        edge: "#27272a",
-        soft: "#f4f4f5",
-        muted: "#9ca3af",
-        dim: "#71717a",
-        accent: "#0284c7",
-        mint: "#21c45d",
+        ink: "rgb(var(--ink) / <alpha-value>)",
+        edge: "rgb(var(--edge) / <alpha-value>)",
+        soft: "rgb(var(--soft) / <alpha-value>)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
+        dim: "rgb(var(--dim) / <alpha-value>)",
+        accent: "rgb(var(--accent) / <alpha-value>)",
       },
       fontFamily: {
-        sans: ["Satoshi", "DM Sans", "system-ui", "sans-serif"],
-        heading: ["DM Sans", "Satoshi", "system-ui", "sans-serif"],
+        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+        serif: ["Newsreader", "Georgia", "serif"],
         mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       maxWidth: {
-        site: "72rem",
+        site: "44rem",
       },
     },
   },
