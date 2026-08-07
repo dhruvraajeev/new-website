@@ -19,9 +19,7 @@
   <body>
     <!-- Set the theme before first paint so light mode never flashes dark. -->
     <script>
-      document.documentElement.dataset.theme =
-        localStorage.theme ||
-        (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.dataset.theme = localStorage.theme || "light";
     </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

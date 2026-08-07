@@ -12,7 +12,7 @@ import {
 export default function App() {
   // The inline script in index.html already set data-theme before paint.
   const [theme, setTheme] = useState(
-    () => document.documentElement.dataset.theme ?? "dark",
+    () => document.documentElement.dataset.theme ?? "light",
   );
 
   const toggleTheme = () => {
@@ -31,18 +31,20 @@ export default function App() {
           className="h-full w-full"
           colors={
             theme === "dark"
-              ? ["#0284c7", "#6366f1", "#22d3ee"]
+              ? ["#0ea5e9", "#818cf8", "#2dd4ee"]
               : ["#7aa7c7", "#a5a8e0", "#8fd3e0"]
           }
           speed={0.4}
-          glow={0.7}
-          opacity={theme === "dark" ? 0.38 : 0.35}
+          glow={theme === "dark" ? 1.1 : 0.7}
+          opacity={theme === "dark" ? 0.2 : 0.35}
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 80% 70% at 50% 40%, rgb(var(--ink) / 0.35) 0%, rgb(var(--ink) / 0.85) 65%, rgb(var(--ink)) 100%)",
+              theme === "dark"
+                ? "radial-gradient(ellipse 80% 70% at 50% 40%, rgb(var(--ink) / 0.1) 0%, rgb(var(--ink) / 0.55) 65%, rgb(var(--ink) / 0.85) 100%)"
+                : "radial-gradient(ellipse 80% 70% at 50% 40%, rgb(var(--ink) / 0.35) 0%, rgb(var(--ink) / 0.85) 65%, rgb(var(--ink)) 100%)",
           }}
         />
       </div>
