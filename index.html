@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dhruv Raajeev — CS @ Texas A&M</title>
+    <title>dhruv raajeev</title>
     <meta
       name="description"
       content="Dhruv Raajeev — computer science student at Texas A&M interested in AI infrastructure, algorithmic modeling, and distributed systems."
@@ -17,9 +17,11 @@
     />
   </head>
   <body>
-    <!-- Set the theme before first paint so light mode never flashes dark. -->
+    <!-- Set before first paint so the page never flashes the wrong theme.
+         Same key/logic as src/lib/theme.ts, shared with thoughts/*.html. -->
     <script>
-      document.documentElement.dataset.theme = localStorage.theme || "light";
+      document.documentElement.dataset.theme =
+        localStorage.getItem("theme") === "dark" ? "dark" : "light";
     </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

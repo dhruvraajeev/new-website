@@ -14,8 +14,34 @@ export default function Projects() {
           <li key={p.name}>
             <details className="group">
               <summary className="flex cursor-pointer list-none items-baseline justify-between gap-x-4 py-3 transition-colors hover:text-white [&::-webkit-details-marker]:hidden">
-                <span className="font-serif text-lg tracking-[-0.01em] text-soft">
-                  {p.name}
+                <span className="flex items-baseline gap-x-4">
+                  <span className="font-serif text-lg tracking-[-0.01em] text-soft">
+                    {p.name}
+                  </span>
+                  <span className="flex shrink-0 items-baseline gap-x-3 font-mono text-[0.7rem] text-dim">
+                    {p.live && (
+                      <a
+                        href={p.live}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="transition-colors hover:text-accent"
+                      >
+                        live ↗
+                      </a>
+                    )}
+                    {p.source && (
+                      <a
+                        href={p.source}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="transition-colors hover:text-accent"
+                      >
+                        source ↗
+                      </a>
+                    )}
+                  </span>
                 </span>
                 <span className="shrink-0 font-mono text-[0.7rem] text-dim">
                   {p.window}

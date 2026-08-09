@@ -1,24 +1,24 @@
 import { useState } from "react";
 import Ferrofluid from "./components/reactbits/Ferrofluid/Ferrofluid";
 import Projects from "./components/Projects";
+import { getTheme, setTheme as persistTheme, ferrofluidPropsForTheme, vignetteForTheme } from "./lib/theme";
 import {
   education,
   experience,
   identity,
   nav,
   skills,
+  thoughts,
 } from "./data/content";
 
 export default function App() {
-  // The inline script in index.html already set data-theme before paint.
-  const [theme, setTheme] = useState(
-    () => document.documentElement.dataset.theme ?? "light",
-  );
+  // The inline script in index.html already applied the stored theme (or
+  // "light" as the default) to <html> before paint.
+  const [theme, setTheme] = useState(getTheme);
 
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
-    document.documentElement.dataset.theme = next;
-    localStorage.theme = next;
+    persistTheme(next);
     setTheme(next);
   };
 
@@ -29,23 +29,12 @@ export default function App() {
         <Ferrofluid
           key={theme}
           className="h-full w-full"
-          colors={
-            theme === "dark"
-              ? ["#0ea5e9", "#818cf8", "#2dd4ee"]
-              : ["#7aa7c7", "#a5a8e0", "#8fd3e0"]
-          }
           speed={0.4}
-          glow={theme === "dark" ? 1.1 : 0.7}
-          opacity={theme === "dark" ? 0.2 : 0.35}
+          {...ferrofluidPropsForTheme(theme)}
         />
         <div
           className="absolute inset-0"
-          style={{
-            background:
-              theme === "dark"
-                ? "radial-gradient(ellipse 80% 70% at 50% 40%, rgb(var(--ink) / 0.1) 0%, rgb(var(--ink) / 0.55) 65%, rgb(var(--ink) / 0.85) 100%)"
-                : "radial-gradient(ellipse 80% 70% at 50% 40%, rgb(var(--ink) / 0.35) 0%, rgb(var(--ink) / 0.85) 65%, rgb(var(--ink)) 100%)",
-          }}
+          style={{ background: vignetteForTheme(theme) }}
         />
       </div>
 
@@ -155,6 +144,27 @@ export default function App() {
               </div>
             ))}
           </dl>
+        </section>
+
+        <section className="mt-20">
+          <p className="label">thoughts</p>
+          <ul className="mt-8 divide-y divide-edge/60 border-t border-edge/60">
+            {thoughts.map((t) => (
+              <li key={t.href}>
+                <a
+                  href={t.href}
+                  className="flex items-baseline justify-between gap-x-4 py-3 transition-colors hover:text-accent"
+                >
+                  <span className="font-serif text-lg tracking-[-0.01em] text-soft">
+                    {t.title}
+                  </span>
+                  <span className="shrink-0 font-mono text-[0.7rem] text-dim">
+                    {t.date}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section id="contact" className="mt-20">

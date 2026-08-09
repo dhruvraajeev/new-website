@@ -98,12 +98,13 @@ export const projects: Project[] = [
   },
   {
     name: "pxpipe — oss contributions",
-    window: "july 2026",
+    window: "july 2026 – aug 2026",
     tags: ["typescript", "cloudflare workers", "vitest"],
     source: "https://github.com/teamchong/pxpipe/pulls?q=author%3Adhruvraajeev",
     bullets: [
       "glyph fix for an alphanumeric bug in an oss image-compression tool that cuts fable 5's token cost.",
       "added regression tests so similar letter mix-ups don't slip back in.",
+      "shipped an OLS chars-per-token fit with fail-closed guards; measured 77k production events at ~2.3 vs. the hardcoded 4, landing a recalibrated constant upstream.",
     ],
   },
   {
@@ -174,6 +175,16 @@ export const skills = {
     "node.js",
   ],
 };
+
+export interface Thought {
+  title: string;
+  date: string;
+  href: string;
+}
+
+export const thoughts: Thought[] = [
+  { title: "ego in tech", date: "aug 2026", href: "/thoughts/ego-in-tech.html" },
+];
 
 export const nav = [
   { label: "experience", href: "#experience" },

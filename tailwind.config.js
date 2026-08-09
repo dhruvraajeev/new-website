@@ -17,7 +17,7 @@ export default {
         mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       maxWidth: {
-        site: "44rem",
+        site: "54rem",
       },
     },
   },

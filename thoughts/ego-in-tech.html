@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ego in tech — dhruv raajeev</title>
+    <!-- Set before first paint so the page never flashes the wrong theme.
+         Same key/logic as src/lib/theme.ts, shared with the homepage. -->
+    <script>
+      document.documentElement.dataset.theme =
+        localStorage.getItem("theme") === "dark" ? "dark" : "light";
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root[data-theme="light"] {
+        --ink: 246 244 239;
+        --edge: 216 210 199;
+        --soft: 26 24 22;
+        --muted: 88 84 78;
+        --dim: 132 126 117;
+        --accent: 13 92 140;
+      }
+      :root[data-theme="dark"] {
+        --ink: 9 9 11;
+        --edge: 39 39 42;
+        --soft: 244 244 245;
+        --muted: 156 163 175;
+        --dim: 113 113 122;
+        --accent: 2 132 199;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: rgb(var(--ink));
+        color: rgb(var(--soft));
+        font-family: "Inter", system-ui, sans-serif;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+      #ferrofluid-bg {
+        position: fixed;
+        inset: 0;
+        z-index: -10;
+        pointer-events: none;
+      }
+      #ferrofluid-canvas {
+        position: absolute;
+        inset: 0;
+      }
+      #ferrofluid-canvas canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      #ferrofluid-vignette {
+        position: absolute;
+        inset: 0;
+      }
+      :root[data-theme="light"] #ferrofluid-vignette {
+        background: radial-gradient(
+          ellipse 100% 100% at 50% 50%,
+          rgb(var(--ink) / 0.35) 0%,
+          rgb(var(--ink) / 0.85) 80%,
+          rgb(var(--ink)) 100%
+        );
+      }
+      :root[data-theme="dark"] #ferrofluid-vignette {
+        background: radial-gradient(
+          ellipse 100% 100% at 50% 50%,
+          rgb(var(--ink) / 0.1) 0%,
+          rgb(var(--ink) / 0.55) 80%,
+          rgb(var(--ink) / 0.85) 100%
+        );
+      }
+      main {
+        position: relative;
+        max-width: 54rem;
+        margin: 0 auto;
+        padding: 3rem 1.5rem 6rem;
+      }
+      header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      a {
+        color: rgb(var(--muted));
+        text-decoration: underline;
+        text-decoration-color: rgb(var(--edge));
+        text-underline-offset: 4px;
+      }
+      a:hover {
+        color: rgb(var(--soft));
+        text-decoration-color: rgb(var(--accent));
+      }
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: rgb(var(--dim));
+        font-size: 1rem;
+        padding: 0;
+      }
+      button:hover {
+        color: rgb(var(--soft));
+      }
+      .label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: rgb(var(--dim));
+      }
+      .label a {
+        text-decoration: none;
+      }
+      .label a:hover {
+        color: rgb(var(--soft));
+      }
+      h1 {
+        font-family: "Newsreader", Georgia, serif;
+        font-weight: 500;
+        font-size: 2.5rem;
+        letter-spacing: -0.02em;
+        margin: 0.75rem 0 0;
+      }
+      .date {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        color: rgb(var(--dim));
+        margin-top: 0.75rem;
+      }
+      article {
+        margin-top: 3rem;
+      }
+      article p {
+        color: rgb(var(--muted));
+        max-width: 42rem;
+      }
+      article h2 {
+        font-family: "Newsreader", Georgia, serif;
+        font-weight: 500;
+        font-style: italic;
+        font-size: 1.4rem;
+        color: rgb(var(--soft));
+        margin: 2.5rem 0 1rem;
+      }
+      article ul {
+        color: rgb(var(--muted));
+        max-width: 42rem;
+        padding-left: 1.2rem;
+      }
+      article li {
+        margin: 0.4rem 0;
+      }
+      blockquote {
+        margin: 2rem 0;
+        padding-left: 1.2rem;
+        border-left: 2px solid rgb(var(--edge));
+        font-family: "Newsreader", Georgia, serif;
+        font-style: italic;
+        font-size: 1.15rem;
+        color: rgb(var(--soft));
+      }
+      hr {
+        border: none;
+        border-top: 1px solid rgb(var(--edge));
+        margin: 3rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="ferrofluid-bg">
+      <div id="ferrofluid-canvas"></div>
+      <div id="ferrofluid-vignette"></div>
+    </div>
+    <main>
+      <header>
+        <p class="label"><a href="/#top">← dhruv raajeev</a></p>
+        <button id="theme-toggle" aria-label="toggle theme">☀</button>
+      </header>
+      <h1>ego in tech</h1>
+      <p class="date">aug 9 2026</p>
+
+      <article>
+        <p>
+          being in tech for a few years now, you tend to learn to distinguish between people who are ego-driven and people who aren't.
+        </p>
+        <p>
+            unfortunately, pretty much is everyone is ego-driven in some way. everyone runs on ego - it's just that some people are usually just more at terms with their level of it and some lack that self-awareness.
+        </p>
+        <p>
+            this really hits in an industry like tech where the stakes are obviously high, but moreso where people LOVE to pretend like they know what they're doing. seriously - it's hard to find someone who doesn't talk up their skills and experiences. there'll be a lot of straight ideas or half-finished repos being shipped as a final product.
+        </p>
+
+        <h2>praise patterns</h2>
+        <p>
+          so that's just the "on the nose" version that I notice. some people are of course, better about their portrayed humility towards others. though I've noticed there's always still a lingering level of humility behind those people. the more subtle version of this lies in praise patterns.
+        </p>
+        <ul>
+          <li>an intern praises a senior engineer for their work</li>
+          <li>a senior engineer praises an intern for their work</li>
+          <li>a senior engineer is overly critical of another senior's work</li>
+        </ul>
+
+        <blockquote>
+          "you only praise those who are established as 'better than you'"
+        </blockquote>
+
+        <p>
+          the logic behind this, I think, is that when there's a clear gap between you and someone else, whether you and them both know you're better at certain things or worse at others, showing moments of praise costs nothing since it doesn't really affect your perception of where you stand.
+
+        </p>
+        <p>
+        it's what's in between that starts to get expensive, since it sometimes feels that praising anyone close to your own level says something about your own capability too. granted, this doesn't apply to everyone, and certainly doesn't just happen out of malice, but the pattern's there if you're paying attention to who goes quiet.
+        </p>
+
+        <h2>let things go</h2>
+
+        <p>
+            try to be a "why do you feel this way?" guy and not a "you're wrong" guy. question why someone has a distinctly different opinion insteads of shutting them down.
+        </p>
+        <p>
+            I've learned it's important to just let go of most arguments, because honestly it's not always a loss. if you truly believe something that others don't, just stick to yourself. oftentimes if you're fully convinced on something and feel your opinion won't change on it, you're making the other person's thoughts trivial in your eyes.
+        </p>
+        <p>
+            it's not uncommon to find someone who loves being argumentative. a disagreement should either stay that way or become a joint agreement to find a better answer.
+        </p>
+
+
+        <h2> why ego can be a GOOD thing</h2>
+        <p>
+            none of these nuances really make ego a villain though. no ego and you can't ship, too much ego and you're way ahead of yourself. some ego gets you to contribute though, and to speak up with your own input.
+        </p>
+        <p>
+            it's the same ego that lets you open a PR before perfection or maybe push back on a design instead of being a yes-man. you don't always have to be right, so maybe it's less of a trait and more of a tool.
+        </p>
+
+        <h2>where do I stand?</h2>
+        <p>
+          It's honestly hard to say. I'd like to say that I try to be honest and real with the praise I give to others, but there's truly no way to know. if this is you too, then just try to be honest with yourself when it happens. recognize that it's not always a bad thing, but question if you're getting ahead of yourself and the greater goal sometimes.
+        </p>
+        <p>
+          I think that's really the whole thing. the goal's never less ego, but rather to understand when you may be excessive or subtle about it and choosing when to put it down.
+        </p>
+
+        <hr />
+        <p class="date">← <a href="/#top">back to dhruv raajeev</a></p>
+      </article>
+    </main>
+    <script type="module" src="/src/thoughts-entry.ts"></script>
+  </body>
+</html>
