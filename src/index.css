@@ -15,12 +15,12 @@
 }
 
 :root[data-theme="light"] {
-  --ink: 246 244 239;
-  --edge: 216 210 199;
-  --soft: 26 24 22;
-  --muted: 88 84 78;
-  --dim: 132 126 117;
-  --accent: 13 92 140;
+  --ink: 238 241 243;
+  --edge: 205 212 217;
+  --soft: 22 27 31;
+  --muted: 84 93 101;
+  --dim: 130 140 148;
+  --accent: 15 94 116;
   color-scheme: light;
 }
 
