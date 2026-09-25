@@ -4,14 +4,14 @@ export const identity = {
   name: "dhruv raajeev",
   greeting: "dhruv raajeev",
   // Serif headline, one line per array entry.
-  headline: ["ai infrastructure &", "algorithmic modeling."],
+  headline: ["agentic ai &", "inference infrastructure."],
   tagline:
-    "interested in ai infrastructure, algorithmic modeling, and distributed systems.",
+    "interested in agentic ai, inference infrastructure, and low-latency systems.",
   school:
     "computer science @ texas a&m university — expected graduation may 2028.",
   location: "college station, tx",
   availability:
-    "open to ai infrastructure or quantitative development opportunities.",
+    "open to ai infrastructure or agentic ai opportunities.",
   email: "dhruv.raajeev@outlook.com",
   resumeHref: "/resume.pdf",
   links: {
@@ -50,9 +50,9 @@ export const experience: Role[] = [
     window: "jan 2026 – present",
     location: "college station, tx",
     bullets: [
-      "backtested a combined buy/sell signal pipeline (nvda) with walk-forward training, trade log sanity checks, and standardized local csv inputs feeding 20+ performance metrics (sharpe/sortino, drawdown, win rate, profit factor).",
-      "added s&p 500 benchmark analytics (alpha, beta, volatility) behind a 3-source data fallback and cli flags for repeatable runs at a student-managed fund with $70k+ aum.",
-      "diagnosed a train/test leak where the holdout collapsed onto labeled training dates; helped rebuild validation with causal features and a clean 263-day holdout, covered by 25 unit tests.",
+      "tested a trading strategy on past stock data to see how well it would have done.",
+      "added comparisons against the s&p 500 so results are easy to check and rerun.",
+      "found and fixed a mistake where the test data overlapped with the training data.",
     ],
   },
   {
@@ -61,9 +61,9 @@ export const experience: Role[] = [
     window: "july 2025 – november 2025",
     location: "austin, tx",
     bullets: [
-      "built a python pdf resume parser (pdfminer, regex) that extracts contact fields and work history into structured json, matching skills against a 222-term taxonomy.",
-      "built a semantic search pipeline in pinecone with 384-dim minilm embeddings (hugging face, pytorch), retrieving the best-matching resumes for a job description by cosine similarity.",
-      "iterated through 3 matching pipelines (tf-idf baseline, 385-term keyword lexicon, embeddings) to compare candidate-to-role retrieval.",
+      "built a tool that reads resumes and pulls out contact info, work history, and skills.",
+      "built a search that finds the best-fitting resumes for a job description.",
+      "compared three ways of matching candidates to roles.",
     ],
   },
   {
@@ -72,7 +72,7 @@ export const experience: Role[] = [
     window: "jul 2024 – oct 2024",
     location: "denton, tx",
     bullets: [
-      "framework proposal for integrating SSO w/ DIDs to enhance authentication in software patch delivery systems.",
+      "proposed a safer way to log in when delivering software updates.",
     ],
   },
 ];
@@ -94,8 +94,8 @@ export const projects: Project[] = [
     live: "https://dhruvraajeev.github.io/amber/",
     source: "https://github.com/dhruvraajeev/amber",
     bullets: [
-      "sketch llm system architectures on a canvas and simulate load to project p50/p99 latency, utilization, and monthly cost before deploying.",
-      "modeled continuous batching, kv-cache limits, and speculative decoding; engine validated within 0.8% of m/m/1 and m/m/c theory, with 380+ tests in ci.",
+      "design an ai system on a canvas and simulate traffic to see speed and cost before building it.",
+      "checked the simulator against known queueing math (within 0.8%) and 380+ automated tests.",
     ],
   },
   {
@@ -105,8 +105,8 @@ export const projects: Project[] = [
     live: "https://brittlepfs.vercel.app",
     source: "https://github.com/dhruvraajeev/brittlePortfolioScore",
     bullets: [
-      "interactive stock portfolio playground - score determined by concentration and risk metrics.",
-      "modeled how a shift to one big holding can spill into the rest of the book; covered with tests for reliable results.",
+      "interactive stock portfolio playground that scores how fragile your portfolio is.",
+      "shows how one big drop can spread to the rest of your holdings.",
     ],
   },
   {
@@ -115,9 +115,9 @@ export const projects: Project[] = [
     tags: ["typescript", "cloudflare workers", "vitest"],
     source: "https://github.com/teamchong/pxpipe/pulls?q=author%3Adhruvraajeev",
     bullets: [
-      "glyph fix for an alphanumeric bug in an oss image-compression tool that cuts fable 5's token cost.",
-      "added regression tests so similar letter mix-ups don't slip back in.",
-      "shipped an OLS chars-per-token fit with fail-closed guards; measured 77k production events at ~2.3 vs. the hardcoded 4, landing a recalibrated constant upstream.",
+      "fixed a letter mix-up (k vs h) in an open-source tool that cuts ai token costs.",
+      "added tests so similar mix-ups don't come back.",
+      "measured real usage to correct a wrong cost assumption; merged upstream.",
     ],
   },
   {
@@ -126,8 +126,8 @@ export const projects: Project[] = [
     tags: ["python", "typer", "chaos engineering"],
     source: "https://github.com/chaosblade-io/chaosblade/pull/1326",
     bullets: [
-      "capped an unbounded file-read in chaosblade's LLM agent so large files don't overflow context or token cost.",
-      "added truncation tests covering the byte cap and multibyte boundary edge cases; merged upstream.",
+      "capped how much of a file an ai agent reads at once so big files don't blow up cost.",
+      "added tests for the edge cases; merged upstream.",
     ],
   },
   {
