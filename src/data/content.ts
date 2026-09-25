@@ -86,6 +86,16 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    name: "amber — ai infrastructure simulator",
+    window: "2026",
+    tags: ["react", "typescript", "fastapi", "docker", "github actions"],
+    source: "https://github.com/dhruvraajeev/amber",
+    bullets: [
+      "sketch llm system architectures on a canvas and simulate load to project p50/p99 latency, utilization, and monthly cost before deploying.",
+      "modeled continuous batching, kv-cache limits, and speculative decoding; engine validated within 0.8% of m/m/1 and m/m/c theory, with 380+ tests in ci.",
+    ],
+  },
+  {
     name: "brittle — portfolio fragility score",
     window: "may 2026 – july 2026",
     tags: ["react", "typescript", "fastapi", "numpy", "vercel"],
@@ -150,30 +160,15 @@ export const projects: Project[] = [
 ];
 
 export const skills = {
-  "frameworks & languages": [
-    "python",
-    "c++",
-    "fastapi",
-    "sql",
-    "html/css",
-    "tensorflow",
-    "pytorch",
-    "xgboost",
-    "typescript",
-    "tkinter",
+  languages: ["python", "typescript", "javascript", "c++", "sql", "html/css"],
+  "frameworks & libraries": [
+    "fastapi", "react", "node.js", "tailwind css", "pandas", "numpy",
+    "scikit-learn", "pytorch", "tensorflow", "keras", "xgboost",
   ],
   "tools & platforms": [
-    "github",
-    "react",
-    "jupyter",
-    "google colab",
-    "vs code",
-    "remix ide",
-    "cursor",
-    "claude code",
-    "vercel",
-    "node.js",
+    "pytest", "vitest", "vite", "pinecone", "hugging face", "jupyter", "google colab",
   ],
+  infrastructure: ["docker", "github actions (ci/cd)", "rest apis", "vercel", "git"],
 };
 
 export interface Thought {
