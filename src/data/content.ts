@@ -161,15 +161,15 @@ export const projects: Project[] = [
 ];
 
 export const skills = {
-  languages: ["python", "typescript", "javascript", "c++", "sql", "html/css"],
+  languages: ["python", "typescript", "javascript", "c++", "sql", "solidity", "html/css"],
   "frameworks & libraries": [
     "fastapi", "react", "node.js", "pydantic", "pandas", "numpy",
     "scikit-learn", "pytorch", "tensorflow", "keras", "xgboost",
   ],
   "tools & platforms": [
-    "pytest", "vitest", "vite", "pinecone", "hugging face", "jupyter", "google colab",
+    "pytest", "vitest", "vite", "pinecone", "hugging face", "jupyter", "google colab", "sqlite",
   ],
-  infrastructure: ["inference infrastructure", "docker", "github actions (ci/cd)", "rest apis", "azure", "vercel", "git"],
+  infrastructure: ["inference infrastructure", "docker", "github actions (ci/cd)", "rest apis", "model context protocol (mcp)", "azure", "vercel", "git"],
 };
 
 export interface Thought {
