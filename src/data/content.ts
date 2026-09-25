@@ -50,9 +50,8 @@ export const experience: Role[] = [
     window: "jan 2026 – present",
     location: "college station, tx",
     bullets: [
-      "tested a trading strategy on past stock data to see how well it would have done.",
-      "added comparisons against the s&p 500 so results are easy to check and rerun.",
-      "found and fixed a mistake where the test data overlapped with the training data.",
+      "backtested buy/sell signal pipeline & standardized local csv inputs w/ performance metrics",
+      "extended backtest stack for repeatable runs at a student-managed fund with $70k+ aum.",
     ],
   },
   {
@@ -61,9 +60,8 @@ export const experience: Role[] = [
     window: "july 2025 – november 2025",
     location: "austin, tx",
     bullets: [
-      "built a tool that reads resumes and pulls out contact info, work history, and skills.",
-      "built a search that finds the best-fitting resumes for a job description.",
-      "compared three ways of matching candidates to roles.",
+      "built a python resume parser & a semantic-search pipeline in pinecone.",
+      "hugging face embeddings for cosine-similarity resume retrieval against job-description queries.",
     ],
   },
   {
@@ -72,7 +70,7 @@ export const experience: Role[] = [
     window: "jul 2024 – oct 2024",
     location: "denton, tx",
     bullets: [
-      "proposed a safer way to log in when delivering software updates.",
+      "framework proposal for integrating SSO w/ DIDs to enhance authentication in software patch delivery systems.",
     ],
   },
 ];
@@ -105,8 +103,8 @@ export const projects: Project[] = [
     live: "https://brittlepfs.vercel.app",
     source: "https://github.com/dhruvraajeev/brittlePortfolioScore",
     bullets: [
-      "interactive stock portfolio playground that scores how fragile your portfolio is.",
-      "shows how one big drop can spread to the rest of your holdings.",
+      "interactive stock portfolio playground - score determined by concentration and risk metrics.",
+      "modeled how a shock to the biggest hidden risk factor can spill into the rest of the book; covered with tests for reliable results.",
     ],
   },
   {
