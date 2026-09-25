@@ -4,14 +4,14 @@ export const identity = {
   name: "dhruv raajeev",
   greeting: "dhruv raajeev",
   // Serif headline, one line per array entry.
-  headline: ["agentic ai &", "inference infrastructure."],
+  headline: ["agentic ai &", "ai infrastructure."],
   tagline:
-    "interested in agentic ai, inference infrastructure, and low-latency systems.",
+    "interested in agentic ai, ai infrastructure, and low-latency systems.",
   school:
     "computer science @ texas a&m university — expected graduation may 2028.",
   location: "college station, tx",
   availability:
-    "open to ai infrastructure or agentic ai opportunities.",
+    "open to agentic ai or ai infrastructure opportunities.",
   email: "dhruv.raajeev@outlook.com",
   resumeHref: "/resume.pdf",
   links: {
@@ -169,7 +169,7 @@ export const skills = {
   "tools & platforms": [
     "pytest", "vitest", "vite", "pinecone", "hugging face", "jupyter", "google colab",
   ],
-  infrastructure: ["docker", "github actions (ci/cd)", "rest apis", "vercel", "git"],
+  infrastructure: ["inference infrastructure", "docker", "github actions (ci/cd)", "rest apis", "vercel", "git"],
 };
 
 export interface Thought {
