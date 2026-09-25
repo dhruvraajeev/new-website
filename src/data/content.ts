@@ -89,6 +89,7 @@ export const projects: Project[] = [
     name: "amber — ai infrastructure simulator",
     window: "2026",
     tags: ["react", "typescript", "fastapi", "docker", "github actions"],
+    live: "https://dhruvraajeev.github.io/amber/",
     source: "https://github.com/dhruvraajeev/amber",
     bullets: [
       "sketch llm system architectures on a canvas and simulate load to project p50/p99 latency, utilization, and monthly cost before deploying.",
