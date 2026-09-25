@@ -92,8 +92,8 @@ export const projects: Project[] = [
     live: "https://dhruvraajeev.github.io/amber/",
     source: "https://github.com/dhruvraajeev/amber",
     bullets: [
-      "design an ai system on a canvas and simulate traffic to see speed and cost before building it.",
-      "checked the simulator against known queueing math (within 0.8%) and 380+ automated tests.",
+      "design a web or ai system on a canvas and simulate traffic to see its speed, bottlenecks, and cost before building it.",
+      "checked the simulator against known queueing math (within 0.8%) and 400+ automated tests.",
     ],
   },
   {
