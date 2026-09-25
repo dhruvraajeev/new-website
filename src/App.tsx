@@ -121,7 +121,7 @@ export default function App() {
                 </div>
                 <p className="mt-1 text-dim">{role.title}</p>
                 {role.bullets.map((b, i) => (
-                  <p key={i} className="mt-2 max-w-prose leading-relaxed text-muted">
+                  <p key={i} className="mt-2 max-w-[75ch] leading-relaxed text-muted">
                     {b}
                   </p>
                 ))}
