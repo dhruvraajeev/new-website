@@ -30,7 +30,7 @@ export const education = {
     "discrete structures for computing",
     "program design and concepts",
     "computation (python)",
-    "experimental physics and engineering lab",
+    "statistics",
     "linear algebra",
   ],
 };
@@ -50,8 +50,9 @@ export const experience: Role[] = [
     window: "jan 2026 – present",
     location: "college station, tx",
     bullets: [
-      "backtested buy/sell signal pipeline & standardized local csv inputs w/ performance metrics",
-      "extended backtest stack for repeatable runs at a student-managed quant fund with $70k+ aum.",
+      "backtested a combined buy/sell signal pipeline (nvda) with walk-forward training, trade log sanity checks, and standardized local csv inputs feeding 20+ performance metrics (sharpe/sortino, drawdown, win rate, profit factor).",
+      "added s&p 500 benchmark analytics (alpha, beta, volatility) behind a 3-source data fallback and cli flags for repeatable runs at a student-managed fund with $70k+ aum.",
+      "diagnosed a train/test leak where the holdout collapsed onto labeled training dates; helped rebuild validation with causal features and a clean 263-day holdout, covered by 25 unit tests.",
     ],
   },
   {
@@ -60,8 +61,9 @@ export const experience: Role[] = [
     window: "july 2025 – november 2025",
     location: "austin, tx",
     bullets: [
-      "implemented python-based parsing engines & engineered a semantic-search pipeline in pinecone.",
- "hugging face transformers for cosine-similarity resume retrieval against job-description queries.",
+      "built a python pdf resume parser (pdfminer, regex) that extracts contact fields and work history into structured json, matching skills against a 222-term taxonomy.",
+      "built a semantic search pipeline in pinecone with 384-dim minilm embeddings (hugging face, pytorch), retrieving the best-matching resumes for a job description by cosine similarity.",
+      "iterated through 3 matching pipelines (tf-idf baseline, 385-term keyword lexicon, embeddings) to compare candidate-to-role retrieval.",
     ],
   },
   {
@@ -87,7 +89,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     name: "amber — ai infrastructure simulator",
-    window: "2026",
+    window: "sep 2026 – present",
     tags: ["react", "typescript", "fastapi", "docker", "github actions"],
     live: "https://dhruvraajeev.github.io/amber/",
     source: "https://github.com/dhruvraajeev/amber",
