@@ -50,7 +50,7 @@ export const experience: Role[] = [
     window: "jan 2026 – present",
     location: "college station, tx",
     bullets: [
-      "backtested buy/sell signal pipeline & standardized local csv inputs w/ performance metrics",
+      "backtested buy/sell signal pipeline w/ day-by-day trade simulation & standardized local csv inputs w/ performance metrics",
       "extended backtest stack for repeatable runs at a student-managed fund with $70k+ aum.",
     ],
   },
