@@ -161,13 +161,13 @@ export const projects: Project[] = [
 ];
 
 export const skills = {
-  languages: ["python", "typescript", "javascript", "c++", "sql", "solidity", "html/css"],
+  languages: ["python", "typescript", "javascript", "c++", "sql", "html/css"],
   "frameworks & libraries": [
     "fastapi", "react", "node.js", "pydantic", "pandas", "numpy",
     "scikit-learn", "pytorch", "tensorflow", "keras", "xgboost",
   ],
   "tools & platforms": [
-    "pytest", "vitest", "vite", "pinecone", "hugging face", "jupyter", "google colab", "sqlite",
+    "pytest", "vitest", "vite", "pinecone", "hugging face", "jupyter", "google colab",
   ],
   infrastructure: ["inference infrastructure", "docker", "github actions (ci/cd)", "rest apis", "model context protocol (mcp)", "azure", "vercel", "git"],
 };
