@@ -134,8 +134,8 @@ export const projects: Project[] = [
     tags: ["python", "tkinter", "sqlite", "regex"],
     source: "https://github.com/dhruvraajeev/log-analysis-sqlitedb",
     bullets: [
-      "built a desktop app to load, search, and visualize log files with real-time pattern detection.",
-      "stored everything in sqlite with sorting, highlighting, and json export.",
+      "built a desktop app to load and search log files, with pattern detection that runs automatically in the background.",
+      "stored sessions and results in sqlite, with search highlighting and json export.",
     ],
   },
   {
