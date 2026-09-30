@@ -59,6 +59,10 @@
         height: 100%;
         display: block;
       }
+      /* Same iOS white-ferrofluid fix as src/index.css. */
+      :root[data-theme="light"] #ferrofluid-canvas canvas {
+        filter: brightness(0);
+      }
       #ferrofluid-vignette {
         position: absolute;
         inset: 0;

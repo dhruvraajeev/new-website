@@ -24,6 +24,12 @@
   color-scheme: light;
 }
 
+/* Ferrofluid shader emits non-premultiplied color; iOS WebKit composites that
+   as white on the light theme. Force it to the black desktop Chrome shows. */
+:root[data-theme="light"] canvas {
+  filter: brightness(0);
+}
+
 body {
   @apply bg-ink text-soft font-sans antialiased;
   font-size: 15px;
