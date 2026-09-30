@@ -1,13 +1,13 @@
 import { useState } from "react";
 import Ferrofluid from "./components/reactbits/Ferrofluid/Ferrofluid";
 import Projects from "./components/Projects";
+import Toolkit from "./components/Toolkit";
 import { getTheme, setTheme as persistTheme, ferrofluidPropsForTheme, vignetteForTheme } from "./lib/theme";
 import {
   education,
   experience,
   identity,
   nav,
-  skills,
   thoughts,
 } from "./data/content";
 
@@ -24,7 +24,7 @@ export default function App() {
 
   return (
     <>
-      {/* Sole animated element on the page — everything else is static. */}
+      {/* Background animation. */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <Ferrofluid
           key={theme}
@@ -132,19 +132,7 @@ export default function App() {
 
         <Projects />
 
-        <section className="mt-20">
-          <p className="label">toolkit</p>
-          <dl className="mt-8 space-y-4">
-            {Object.entries(skills).map(([group, items]) => (
-              <div key={group}>
-                <dt className="font-mono text-[0.7rem] text-dim">{group}</dt>
-                <dd className="mt-1 max-w-prose text-muted">
-                  {items.join(", ")}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </section>
+        <Toolkit />
 
         <section className="mt-20">
           <p className="label">thoughts</p>
