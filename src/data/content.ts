@@ -86,6 +86,17 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    name: "pkgmirage — package safety checker",
+    window: "oct 2026 – present",
+    tags: ["typescript", "cloudflare workers", "mcp", "vitest"],
+    live: "https://pkgmirage.dhruvr.workers.dev",
+    source: "https://github.com/dhruvraajeev/pkgmirage",
+    bullets: [
+      "checks that a package an ai assistant wants to install is real and not malware before it gets installed.",
+      "made-up package names it sees are watched nightly in case an attacker registers them.",
+    ],
+  },
+  {
     name: "amber — ai infrastructure simulator",
     window: "sep 2026 – present",
     tags: ["react", "typescript", "fastapi", "docker", "github actions"],
