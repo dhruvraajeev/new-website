@@ -11,7 +11,7 @@ export const identity = {
     "computer science @ texas a&m university — expected graduation may 2028.",
   location: "college station, tx",
   availability:
-    "open to summer 2027 swe internships, especially inference, agentic ai, and real-time systems.",
+    "open to opportunities in inference infrastructure, agentic ai, and real-time systems.",
   email: "dhruv.raajeev@outlook.com",
   resumeHref: "/resume.pdf",
   links: {
