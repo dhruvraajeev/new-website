@@ -4,14 +4,14 @@ export const identity = {
   name: "dhruv raajeev",
   greeting: "dhruv raajeev",
   // Serif headline, one line per array entry.
-  headline: ["agentic ai &", "ai infrastructure."],
+  headline: ["agentic ai &", "inference infrastructure."],
   tagline:
-    "interested in agentic ai, ai infrastructure, and low-latency systems.",
+    "building inference infrastructure, agentic ai, and real-time systems, shipped as full-stack products.",
   school:
     "computer science @ texas a&m university — expected graduation may 2028.",
   location: "college station, tx",
   availability:
-    "open to agentic ai or ai infrastructure opportunities.",
+    "open to summer 2027 swe internships, especially inference, agentic ai, and real-time systems.",
   email: "dhruv.raajeev@outlook.com",
   resumeHref: "/resume.pdf",
   links: {
@@ -86,17 +86,6 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    name: "pkgmirage — package safety checker",
-    window: "oct 2026 – present",
-    tags: ["typescript", "cloudflare workers", "mcp", "vitest"],
-    live: "https://pkgmirage.dhruvr.workers.dev",
-    source: "https://github.com/dhruvraajeev/pkgmirage",
-    bullets: [
-      "checks that a package an ai assistant wants to install is real and not malware before it gets installed.",
-      "made-up package names it sees are watched nightly in case an attacker registers them.",
-    ],
-  },
-  {
     name: "amber — ai infrastructure simulator",
     window: "sep 2026 – present",
     tags: ["react", "typescript", "fastapi", "docker", "github actions"],
@@ -105,17 +94,6 @@ export const projects: Project[] = [
     bullets: [
       "design a web or ai system on a canvas and simulate traffic to see its speed, bottlenecks, and cost before building it.",
       "checked the simulator against known queueing math (within 0.8%) and 400+ automated tests.",
-    ],
-  },
-  {
-    name: "brittle — portfolio fragility score",
-    window: "may 2026 – july 2026",
-    tags: ["react", "typescript", "fastapi", "numpy", "vercel"],
-    live: "https://brittlepfs.vercel.app",
-    source: "https://github.com/dhruvraajeev/brittlePortfolioScore",
-    bullets: [
-      "interactive stock portfolio playground - score determined by concentration and risk metrics.",
-      "modeled how a shock to the biggest hidden risk factor can spill into the rest of the book; covered with tests for reliable results.",
     ],
   },
   {
@@ -137,6 +115,28 @@ export const projects: Project[] = [
     bullets: [
       "capped how much of a file an ai agent reads at once so big files don't blow up cost.",
       "added tests for the edge cases; merged upstream.",
+    ],
+  },
+  {
+    name: "pkgmirage — package safety checker",
+    window: "oct 2026 – present",
+    tags: ["typescript", "cloudflare workers", "mcp", "vitest"],
+    live: "https://pkgmirage.dhruvr.workers.dev",
+    source: "https://github.com/dhruvraajeev/pkgmirage",
+    bullets: [
+      "checks that a package an ai assistant wants to install is real and not malware before it gets installed.",
+      "made-up package names it sees are watched nightly in case an attacker registers them.",
+    ],
+  },
+  {
+    name: "brittle — portfolio fragility score",
+    window: "may 2026 – july 2026",
+    tags: ["react", "typescript", "fastapi", "numpy", "vercel"],
+    live: "https://brittlepfs.vercel.app",
+    source: "https://github.com/dhruvraajeev/brittlePortfolioScore",
+    bullets: [
+      "interactive stock portfolio playground - score determined by concentration and risk metrics.",
+      "modeled how a shock to the biggest hidden risk factor can spill into the rest of the book; covered with tests for reliable results.",
     ],
   },
   {
@@ -172,15 +172,16 @@ export const projects: Project[] = [
 ];
 
 export const skills = {
-  languages: ["python", "typescript", "javascript", "c++", "sql", "html/css"],
+  languages: ["python", "typescript", "javascript", "java", "c++", "sql", "html/css"],
   "frameworks & libraries": [
-    "fastapi", "react", "node.js", "pydantic", "pandas", "numpy",
-    "scikit-learn", "pytorch", "tensorflow", "keras", "xgboost",
+    "fastapi", "react", "node.js", "pytorch", "tensorflow", "keras",
+    "scikit-learn", "xgboost", "pandas", "numpy",
   ],
   "tools & platforms": [
-    "pytest", "vitest", "vite", "pinecone", "hugging face", "jupyter", "google colab",
+    "git", "github", "pytest", "vitest", "pinecone", "hugging face", "jupyter",
+    "google colab", "vs code", "cursor", "claude code",
   ],
-  infrastructure: ["inference infrastructure", "docker", "github actions (ci/cd)", "rest apis", "model context protocol (mcp)", "azure", "vercel", "git"],
+  infrastructure: ["cloudflare workers (kv, d1)", "docker", "github actions (ci/cd)", "azure", "vercel", "rest apis", "model context protocol (mcp)"],
 };
 
 export interface Thought {
